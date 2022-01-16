@@ -16,7 +16,7 @@ class Config(BaseModel):
         if not value:
             raise ValueError("Mapping cannot be empty.")
         if not values["case_sensitive"] and len({key.lower() for key in value}) != len(value):
-            raise ValueError("Inserting two keys that differ only in letter case without case sensitivity enabled, " 
+            raise ValueError("Inserting two keys that differ only in letter case without case sensitivity enabled, "
                              "may cause plugin malfunction.")
         return value
 
@@ -32,11 +32,12 @@ class MappingAction(ActionRunner):
 
     async def run(self, payload):
         dot = self._get_dot_accessor(payload)
-        self.config.value = dot[self.config.value]
+        self.config.value = dot[self.config.value].lower() \
+            if not self.config.case_sensitive and isinstance(dot[self.config.value], str) else dot[self.config.value]
 
         self.config.mapping = {
             dot[key].lower() if not self.config.case_sensitive and isinstance(dot[key], str) else dot[key]:
-            dot[value].lower() if not self.config.case_sensitive and isinstance(dot[value], str) else dot[value]
+                dot[value].lower() if not self.config.case_sensitive and isinstance(dot[value], str) else dot[value]
             for key, value in self.config.mapping.items()
         }
 
