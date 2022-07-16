@@ -26,5 +26,8 @@ class Version(BaseModel):
                and self.prev_version.version == other.prev_version.version \
                and self.prev_version.name == other.prev_version.name
 
+    def has_same_current_version(self, other: 'Version') -> bool:
+        return other and self.version == other.version and self.name == other.name
+
     def __str__(self):
         return f"Version {self.version}.{self.name} ({self.prev_version.version if self.prev_version else 'No previous version'})"
