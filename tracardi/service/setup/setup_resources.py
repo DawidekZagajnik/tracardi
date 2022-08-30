@@ -273,6 +273,15 @@ def get_resource_types() -> List[ResourceSettings]:
                 "client_secret": "<your-client-secret>",
                 "subdomain": "<your-subdomain>"
             }
+        ),
+        ResourceSettings(
+            id="stripe",
+            name="Stripe",
+            tags=["stripe"],
+            config={
+                "api_key": "<stripe-api-key>"
+            },
+            manual="stripe_resource"
         )
     ]
 
