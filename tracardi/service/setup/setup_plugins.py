@@ -177,7 +177,7 @@ installed_plugins: Dict[str, PluginTestTemplate] = {
     ),
 
     "tracardi.process_engine.action.v1.operations.reduce_array.plugin": PluginTestTemplate(
-        init={'array': ''},
+        init={'array': 'payload@test'},
         resource=None
     ),
 
@@ -709,6 +709,11 @@ installed_plugins: Dict[str, PluginTestTemplate] = {
 
     "tracardi.process_engine.action.v1.connectors.elastic_email.add_contact.plugin": PluginTestTemplate(
         init={'additional_mapping': {}, 'email': None, 'source': {'id': None, 'name': None}},
+        resource=None
+    ),
+
+    "tracardi.process_engine.action.v1.connectors.elastic_email.contact_status_change.plugin": PluginTestTemplate(
+        init={'email': None, 'status': None, 'source': {'id': None, 'name': None}},
         resource=None
     ),
 

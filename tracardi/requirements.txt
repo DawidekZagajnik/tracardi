@@ -38,7 +38,7 @@ asyncpg
 aiobotocore~=1.4.2
 google-api-python-client == 2.33.0
 google_auth_oauthlib == 0.4.6
-python_weather
+python_weather==0.4.1
 influxdb-client
 grpcio
 grpcio-tools
@@ -46,5 +46,3 @@ certifi
 celery==5.2.6
 random-password-generator==2.2.0
 asyncio-mqtt==0.12.1
-
-
