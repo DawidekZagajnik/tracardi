@@ -6,7 +6,7 @@ from pydantic import validator
 class Config(PluginConfig):
     source: NamedEntity
     charge: int
-    iso_currency_code: NamedEntity
+    iso_currency_code: str
     customer_id: str
     payment_source: str
     receipt_email: str

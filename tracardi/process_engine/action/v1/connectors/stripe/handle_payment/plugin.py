@@ -18,7 +18,7 @@ class StripeChargeAction(ActionRunner):
 
     async def set_up(self, init):
         self.config = validate(init)
-        resource = storage.driver.resource.load(self.config.source.id)
+        resource = await storage.driver.resource.load(self.config.source.id)
         self.client = StripeClient(resource.credentials.get_credentials(self, ApiKey).api_key)
         self.client.set_retries(self.node.on_connection_error_repeat)
 
@@ -27,7 +27,7 @@ class StripeChargeAction(ActionRunner):
         try:
             result = await self.client.create_charge(
                 amount=int(dot[self.config.charge]),
-                currency_code=self.config.iso_currency_code.id,
+                currency_code=self.config.iso_currency_code,
                 customer_id=dot[self.config.customer_id],
                 payment_source=dot[self.config.payment_source],
                 email=dot[self.config.receipt_email]

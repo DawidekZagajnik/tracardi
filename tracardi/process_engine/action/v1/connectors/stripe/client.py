@@ -32,7 +32,7 @@ class StripeClient:
                 }
             ) as response:
 
-                if response.status_code not in [200, 201, 202, 203] or "error" in await response.json():
+                if response.status not in [200, 201, 202, 203] or "error" in await response.json():
                     raise StripeClientException(await response.text())
 
                 return await response.json()
