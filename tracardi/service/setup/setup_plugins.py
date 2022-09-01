@@ -905,6 +905,20 @@ installed_plugins: Dict[str, PluginTestTemplate] = {
             "field": "payload@field",
             "substring": "contains"
         }
+    ),
+    "tracardi.process_engine.action.v1.connectors.stripe.handle_payment.plugin": PluginTestTemplate(
+        init={
+            "source": {
+                "name": "1",
+                "id": "1"
+            },
+            "charge": 0,
+            "iso_currency_code": "usd",
+            "customer_id": "customer-id",
+            "payment_source": "some-card-number",
+            "receipt_email": "email@example.com"
+        },
+        resource={"api-key": "some-key"}
     )
 
 }
